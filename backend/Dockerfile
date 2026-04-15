@@ -2,8 +2,12 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
+# Добавляем системные библиотеки для работы с графикой и документами
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential libpq-dev && \
+    build-essential \
+    libpq-dev \
+    libgl1-mesa-glx \
+    libglib2.0-0 && \
     rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt .
@@ -13,4 +17,5 @@ COPY . .
 
 EXPOSE 8000
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Если твой главный файл лежит в папке app, путь должен быть "app.main:app"
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
