@@ -121,7 +121,7 @@ export default function NewContractPage() {
                       onChange={() => update("org_type", t)}
                       className="sr-only"
                     />
-                    {t === "IP" ? "ЖШС (IP)" : "ТОО (TOO)"}
+                   {t === "IP" ? "ЖК" : "ЖШС"}
                   </label>
                 ))}
               </div>
