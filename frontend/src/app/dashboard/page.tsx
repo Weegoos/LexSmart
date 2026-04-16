@@ -39,7 +39,7 @@ export default function DashboardPage() {
           <div>
             <h1 className="text-xl font-bold text-slate-900">Менің шарттарым</h1>
             <p className="mt-0.5 text-sm text-slate-500">
-              {fetching ? "" : `${contracts.length} ${plural(contracts.length, "шарт", "шарттар", "шарттар")}`}
+              {fetching ? "" : `${contracts.length} ${plural(contracts.length, "шарт")}`}
             </p>
           </div>
             <Link
@@ -70,7 +70,7 @@ export default function DashboardPage() {
               href="/contract/new"
               className="mt-5 rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-indigo-700"
             >
-              Создать договор
+              Шарт жасау
             </Link>
           </div>
         ) : (
@@ -95,7 +95,7 @@ export default function DashboardPage() {
                           ? "bg-violet-50 text-violet-700 ring-1 ring-inset ring-violet-700/20"
                           : "bg-blue-50 text-blue-700 ring-1 ring-inset ring-blue-700/20"
                       }`}>
-                        {c.org_type === "IP" ? "ИП" : "ТОО"}
+                        {c.org_type === "IP" ? "ЖК" : "ЗТ"}
                       </span>
                     </td>
                     <td className="px-5 py-3.5 text-slate-500">
@@ -112,10 +112,9 @@ export default function DashboardPage() {
   );
 }
 
-function plural(n: number, one: string, few: string, many: string): string {
-  const mod10 = n % 10;
-  const mod100 = n % 100;
-  if (mod10 === 1 && mod100 !== 11) return one;
-  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return few;
-  return many;
+function plural(n: number, one: string): string {
+  // Қазақ тілінде сан есімнен кейін зат есім жекеше түрде қалады:
+  // 1 шарт, 2 шарт, 5 шарт — бәрі бірдей
+  void n;
+  return one;
 }

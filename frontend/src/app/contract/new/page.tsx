@@ -52,7 +52,7 @@ export default function NewContractPage() {
       setValidation(result);
       setStep("validation");
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : "Ошибка проверки");
+      setError(err instanceof Error ? err.message : "Тексеру қатесі");
     } finally {
       setSubmitting(false);
     }
@@ -71,7 +71,7 @@ export default function NewContractPage() {
       URL.revokeObjectURL(url);
       setStep("done");
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : "Ошибка генерации");
+      setError(err instanceof Error ? err.message : "Жасау қатесі");
     } finally {
       setSubmitting(false);
     }
@@ -121,7 +121,7 @@ export default function NewContractPage() {
                       onChange={() => update("org_type", t)}
                       className="sr-only"
                     />
-                   {t === "IP" ? "ЖК" : "ЖШС"}
+                   {t === "IP" ? "ЖК" : "ЗТ"}
                   </label>
                 ))}
               </div>
@@ -130,8 +130,8 @@ export default function NewContractPage() {
             {/* Employer */}
             <Section title="Жұмыс беруші">
               <div className="grid gap-4 sm:grid-cols-2">
-                <Field label="Атауы" value={form.employer_name} onChange={(v) => update("employer_name", v)} required placeholder="ЖШС Иванов немесе ТОО «Компания»" />
-                <Field label="ЖСН / БСН" value={form.employer_iin_bin} onChange={(v) => update("employer_iin_bin", v)} required maxLength={12} minLength={12} placeholder="12 цифр" />
+                <Field label="Атауы" value={form.employer_name} onChange={(v) => update("employer_name", v)} required placeholder="ЖК Ахметов немесе «Компания» ЗТ" />
+                <Field label="ЖСН / БСН" value={form.employer_iin_bin} onChange={(v) => update("employer_iin_bin", v)} required maxLength={12} minLength={12} placeholder="12 таңба" />
               </div>
               <Field label="Заңды мекенжайы" value={form.employer_address} onChange={(v) => update("employer_address", v)} required placeholder="Қ. Алматы, Абай к., 1" />
             </Section>
@@ -139,15 +139,15 @@ export default function NewContractPage() {
             {/* Employee */}
             <Section title="Жұмысшы">
               <div className="grid gap-4 sm:grid-cols-2">
-                <Field label="Тегі, аты, әкесінің аты" value={form.employee_name} onChange={(v) => update("employee_name", v)} required placeholder="Фамилия Имя Отчество" />
-                <Field label="ЖСН" value={form.employee_iin} onChange={(v) => update("employee_iin", v)} required maxLength={12} minLength={12} placeholder="12 цифр" />
+                <Field label="Тегі, аты, әкесінің аты" value={form.employee_name} onChange={(v) => update("employee_name", v)} required placeholder="Ахметов Серік Болатұлы" />
+                <Field label="ЖСН" value={form.employee_iin} onChange={(v) => update("employee_iin", v)} required maxLength={12} minLength={12} placeholder="12 таңба" />
               </div>
               <Field label="Тұратын мекенжайы" value={form.employee_address} onChange={(v) => update("employee_address", v)} required placeholder="Қ. Алматы, Ленин к., 5" />
               <Field label="Лауазым" value={form.position} onChange={(v) => update("position", v)} required placeholder="Мысалы: Бағдарламашы-инженер" />
             </Section>
 
             {/* Terms */}
-            <Section title="Шарттың шарттары">
+            <Section title="Шарт талаптары">
               <div className="grid gap-4 sm:grid-cols-3">
                 <NumberField
                   label="Жалақы (KZT)"
@@ -172,7 +172,7 @@ export default function NewContractPage() {
               </div>
               <div className="grid gap-4 sm:grid-cols-3">
                 <NumberField
-                  label="Сынық мерзімі (ай)"
+                  label="Сынақ мерзімі (ай)"
                   value={form.probation_months}
                   onChange={(v) => update("probation_months", v)}
                   min={0}
@@ -323,7 +323,7 @@ export default function NewContractPage() {
                 {submitting ? (
                   <>
                     <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
-                    Генерация...
+                    Жасалуда...
                   </>
                 ) : (
                   <>
